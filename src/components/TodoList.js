@@ -1,9 +1,8 @@
-import React, { useReducer } from 'react';
-import { reducer, todos } from '../reducers/reducer.js';
+import React from 'react';
 
-const TodoList = () => {
+const TodoList = props => {
   return (
-    todos.map(todo => {
+    props.todos.map(todo => {
       return <h3>{todo.item}</h3>;
     })
   )

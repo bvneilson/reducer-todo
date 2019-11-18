@@ -1,13 +1,14 @@
 import React from 'react';
+import { todos } from './reducers/reducer.js';
 import './App.css';
 
 //Components
-import TodoList from './components/TodoList.js';
+import AddTodoForm from './components/AddTodoForm.js';
 
 function App() {
   return (
     <div className="App">
-      <TodoList />
+      <AddTodoForm todos={todos} />
     </div>
   );
 }
