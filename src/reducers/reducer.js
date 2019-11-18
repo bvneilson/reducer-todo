@@ -6,6 +6,14 @@ export const reducer = (state, action) => {
         completed: false,
         id: new Date()
       }];
+    case 'COMPLETE_TODO':
+      state.map(todo => {
+        if (todo.item === action.payload) {
+          todo.completed = (todo.completed ? false : true)
+          todo.style = (todo.completed ? 'complete' : '')
+        }
+      })
+      return state;
     default:
       return state;
   }
@@ -14,15 +22,18 @@ export const reducer = (state, action) => {
 export let todos = [{
   item: 'Learn about reducers',
   completed: false,
-  id: 3892987589
+  style: '',
+  id: 3892987588
 },
 {
   item: 'Do some stuff',
   completed: false,
-  id: 3892987589
+  style: '',
+  id: 3892987556
 },
 {
   item: 'Finish the project',
   completed: false,
-  id: 3892987589
+  style: '',
+  id: 3892987654
 }];

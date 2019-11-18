@@ -12,10 +12,15 @@ const AddTodoForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (e.target.value !== '') {
+    if (todo) {
       dispatch({ type: 'ADD_TODO', payload: todo })
+      setTodo('');
     }
-    setTodo('')
+  }
+
+  const toggleComplete = e => {
+    dispatch({ type: 'COMPLETE_TODO', payload: e.target.innerHTML })
+    console.log(state);
   }
 
   return (
@@ -25,7 +30,7 @@ const AddTodoForm = props => {
         <input type="text" name="todo" value={todo} onChange={handleChange} />
         <input type="submit" value="Add To List" onClick={handleSubmit} />
       </form>
-      <TodoList todos={state} />
+      <TodoList todos={state} toggleComplete={toggleComplete} />
     </div>
   )
 }
