@@ -1,19 +1,25 @@
 export const reducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
+      let d = new Date();
       return [...state, {
         item: action.payload,
         completed: false,
-        id: new Date()
+        id: d.getTime()
       }];
     case 'COMPLETE_TODO':
-      state.map(todo => {
+      return state.map(todo => {
         if (todo.item === action.payload) {
-          todo.completed = (todo.completed ? false : true)
-          todo.style = (todo.completed ? 'complete' : '')
+          todo.completed = todo.completed ? false : true
         }
+        return todo;
       })
-      return state;
+    case 'CLEAR_TODOS':
+      return state.filter(todo => {
+        if (!todo.completed) {
+          return todo;
+        }
+      });
     default:
       return state;
   }
@@ -22,18 +28,15 @@ export const reducer = (state, action) => {
 export let todos = [{
   item: 'Learn about reducers',
   completed: false,
-  style: '',
   id: 3892987588
 },
 {
   item: 'Do some stuff',
   completed: false,
-  style: '',
   id: 3892987556
 },
 {
   item: 'Finish the project',
   completed: false,
-  style: '',
   id: 3892987654
 }];
